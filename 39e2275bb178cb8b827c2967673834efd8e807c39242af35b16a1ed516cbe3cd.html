@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chúc Mừng Sinh Nhật Mày! 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 600px;
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+    h1 {
+      color: #ff5722;
+      font-size: 2.5rem;
+    }
+    p {
+      font-size: 18px;
+      color: #333;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background: #ff5722;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #e64a19;
+    }
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      animation: fall 3s linear infinite;
+      opacity: 0.8;
+    }
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>🎉 Happy Birthday Mày ơi! 🎉</h1>
+    <p id="message">Bấm nút dưới để nhận lời chúc "có tâm" từ tao nè 😎</p>
+    <button id="btnAction" onclick="revealMessage()">Cho tao gửi gắm đôi lời 🎈</button>
+  </div>
+
+  <script>
+    const message = `
+Nay là sinh nhật mày đó à?
+
+Chúc mày:
+– Ăn nhiều mà không mập
+– Thi ít mà vẫn đậu
+– Không có người yêu cũng vui 😜
+– Và lúc nào cũng chill, sống đúng gu của mày!
+
+Biết gì không? Tao thật sự biết ơn vì có đứa bạn như mày đó. Cảm ơn đã luôn bên tao – ăn cùng, ngủ cùng, xàm cùng, và support tao lúc tao ngu nhất.
+
+Happy Birthday, bestie! 🎂
+    `;
+
+    function revealMessage() {
+      document.getElementById("message").innerText = message;
+	  document.getElementById("btnAction").remove();
+      createConfetti();
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 5000);
+      }
+    }
+  </script>
+
+</body>
+</html>
