@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thiệp Động Viên Vợ - Hồng Tươi Tắn</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap');
+
+  body {
+    margin: 0; padding: 0;
+    background: linear-gradient(135deg, #ffe6f0 0%, #ffd4d8 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+  }
+
+  .card-container {
+    width: 320px;
+    height: 400px;
+    perspective: 1500px;
+    cursor: pointer;
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.3);
+  }
+
+  .card.open {
+    transform: rotateY(-180deg);
+    box-shadow: 0 20px 50px rgba(255, 105, 180, 0.5);
+  }
+
+  .card .front,
+  .card .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+  }
+
+  .front {
+    background: #ffe6f0;
+    background-image:
+      radial-gradient(circle at center, #ffb6c1 40%, transparent 70%);
+    color: #d93680;
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    font-weight: 700;
+    user-select: none;
+    box-shadow: inset 0 0 30px rgba(255, 182, 193, 0.6);
+    flex-direction: column;
+    text-shadow: 1px 1px 4px rgba(255, 182, 193, 0.8);
+  }
+
+  .front span {
+    font-size: 1.4rem;
+    margin-top: 15px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-shadow: none;
+  }
+
+  .back {
+    background: #fff0f6;
+    box-shadow: 0 0 40px rgba(255, 105, 180, 0.15);
+    color: #a31f5d;
+    transform: rotateY(180deg);
+    flex-direction: column;
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .back h2 {
+    font-family: 'Great Vibes', cursive;
+    color: #d93680;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    user-select: none;
+  }
+
+  .hearts-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    width: 320px;
+    height: 150px;
+    overflow: visible;
+    z-index: 5;
+  }
+
+  .heart {
+    position: absolute;
+    width: 18px;
+    height: 16px;
+    background: #ff69b4;
+    transform-origin: center;
+    clip-path: polygon(
+      50% 0%, 61% 17%, 78% 20%, 70% 40%, 
+      50% 60%, 30% 40%, 22% 20%, 39% 17%
+    );
+    animation-name: floatUp;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    opacity: 0.85;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-220px) scale(1.6) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="card-container" onclick="toggleCard()">
+  <div id="card" class="card">
+    <div class="front">
+      Mở thiệp
+      <span>Gửi vợ yêu</span>
+    </div>
+    <div class="back">
+      <h2>Em yêu của anh</h2>
+      <p>
+        Cảm ơn em vì một ngày dài đã nỗ lực hết mình.<br />
+        Anh luôn tự hào và ở bên em mỗi bước đường.<br /><br />
+        Giờ là lúc thư giãn và nghỉ ngơi nhé!<br />
+        Anh yêu em rất nhiều! 💖
+      </p>
+    </div>
+  </div>
+  <div class="hearts-container" id="hearts"></div>
+</div>
+
+<script>
+  const card = document.getElementById('card');
+  const heartsContainer = document.getElementById('hearts');
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 300 + 'px';
+    heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+    heartsContainer.appendChild(heart);
+
+    heart.addEventListener('animationend', () => {
+      heart.remove();
+    });
+  }
+
+  function toggleCard() {
+    if (!card.classList.contains('open')) {
+      card.classList.add('open');
+      for(let i = 0; i < 20; i++) {
+        setTimeout(createHeart, i * 180);
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
