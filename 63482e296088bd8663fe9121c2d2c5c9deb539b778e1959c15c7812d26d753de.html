@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chúc Mừng Sinh Nhật Em ❤️</title>
+  <style>
+    body {
+      background: #ffe6f0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    h1 {
+      color: #ff3366;
+      text-shadow: 2px 2px #fff;
+      animation: pulse 1.5s infinite;
+    }
+    p {
+      font-size: 20px;
+      color: #333;
+      max-width: 600px;
+      text-align: center;
+      margin: 20px;
+    }
+    button {
+      padding: 12px 24px;
+      background: #ff6699;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #ff3366;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 4s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Chúc Mừng Sinh Nhật Em! 🎂</h1>
+  <p>Chúc em luôn xinh đẹp, hạnh phúc và tràn đầy yêu thương mỗi ngày. Anh thật may mắn khi có em trong đời! ❤️</p>
+  <button onclick="startHearts()">Bấm vào đây để nhận một điều bất ngờ 😘</button>
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    function startHearts() {
+      const hearts = document.getElementById('hearts');
+      for (let i = 0; i < 50; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        heart.style.opacity = Math.random();
+        hearts.appendChild(heart);
+        setTimeout(() => hearts.removeChild(heart), 5000);
+      }
+    }
+  </script>
+
+</body>
+</html>
